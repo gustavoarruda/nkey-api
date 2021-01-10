@@ -64,7 +64,6 @@ public class UsuarioResource {
 	@ApiOperation("Cria um usuário.")
 	@ApiResponses({
 		@ApiResponse(code = 201, message = "Usuário criado com sucesso."),
-		@ApiResponse(code = 422, message = "Dados inválidos")
 	})
     @PostMapping("/usuarios")
 	@ResponseStatus(HttpStatus.CREATED)
@@ -76,9 +75,6 @@ public class UsuarioResource {
 	@ApiOperation("Atualiza um usuário.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "Usuário atualizado com sucesso."),
-		@ApiResponse(code = 422, message = "Dados inválidos"),
-		@ApiResponse(code = 401, message = "Não autorizado"),
-		@ApiResponse(code = 403, message = "Operação não permitida"),
 		@ApiResponse(code = 404, message = "Usuário não encontrado"),
 	})
 	@PutMapping("/usuarios/{id}")
@@ -88,10 +84,13 @@ public class UsuarioResource {
 	}
     
 	@ApiOperation("Remove um usuário.")
+	@ApiResponses({
+		@ApiResponse(code = 204, message = "Usuário deletado com sucesso"),
+		@ApiResponse(code = 404, message = "Usuário não encontrado"),
+	})
 	@DeleteMapping("/usuarios/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void remover(@Valid @PathVariable Long id) {
-		usuarioRepository.deleteById(id);
+	public ResponseEntity<Usuario> remover(@Valid @PathVariable Long id) {
+		Optional<Usuario> usuario = usuarioRepository.findById(id);
+		return usuario.isPresent() ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
 	}
-
 }

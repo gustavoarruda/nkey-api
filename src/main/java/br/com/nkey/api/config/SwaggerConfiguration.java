@@ -39,7 +39,7 @@ public class SwaggerConfiguration {
 					.title("NKey")
 					.description("API de Teste criado para processo de seleção para empresa NKey Soluções Digitais")
 					.version(buildProperties.getVersion())
-					.contact(new Contact("Gustavo Santos Arruda", "https://github.com/gustavoarruda/", "gustavoanalistabr@gmail.com"))
+					.contact(new Contact("Gustavo Arruda", "https://github.com/gustavoarruda/", "gustavoanalistabr@gmail.com"))
 				.license("Apache License Version 2.0")
 				.build();
 

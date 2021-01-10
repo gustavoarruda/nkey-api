@@ -67,7 +67,6 @@ public class EventoResource {
 	@ApiOperation("Cria um evento.")
 	@ApiResponses({
 		@ApiResponse(code = 201, message = "Evento criado com sucesso."),
-		@ApiResponse(code = 422, message = "Dados inválidos")
 	})
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/eventos")
@@ -76,25 +75,9 @@ public class EventoResource {
 		return eventoRepository.save(evento);
 	}
 	
-	@ApiOperation("Agendar um evento para um usuário")
-	@ApiResponses({
-		@ApiResponse(code = 201, message = "Evento criado com sucesso."),
-		@ApiResponse(code = 422, message = "Dados inválidos")
-	})
-	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping("/eventos/agendar/{usuario}/{data}")
-	public Evento agendar(@Valid @RequestBody Evento evento) {
-		evento.setEventoId(sequenceGeneratorService.generateSequence(Evento.SEQUENCE_NAME));
-		return eventoRepository.save(evento);
-	}
-
 	@ApiOperation("Atualiza um evento.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "Evento atualizado com sucesso."),
-		@ApiResponse(code = 422, message = "Dados inválidos"),
-		@ApiResponse(code = 401, message = "Não autorizado"),
-		@ApiResponse(code = 403, message = "Operação não permitida"),
-		@ApiResponse(code = 404, message = "Evento não encontrado"),
 	})
 	@PutMapping("/eventos/{id}")
 	public ResponseEntity<Evento> atualizar(@PathVariable Long id, @Valid @RequestBody Evento evento) {
@@ -103,10 +86,14 @@ public class EventoResource {
 	}
 
 	@ApiOperation("Remove um evento.")
+	@ApiResponses({
+		@ApiResponse(code = 204, message = "Evento deletado com sucesso"),
+		@ApiResponse(code = 404, message = "Evento não encontrado"),
+	})
 	@DeleteMapping("/eventos/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void remover(@PathVariable Long id) {
-		eventoRepository.deleteById(id);
+	public ResponseEntity<Evento> remover(@Valid @PathVariable Long id) {
+		Optional<Evento> usuario = eventoRepository.findById(id);
+		return usuario.isPresent() ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
 	}
 
 }
