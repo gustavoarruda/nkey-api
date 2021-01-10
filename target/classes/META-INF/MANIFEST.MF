@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Implementation-Title: nkey-api
+Implementation-Version: 1.0.0-org.apache.maven.model.Build@2a5bb904-SN
+ APSHOT
+Build-Jdk-Spec: 1.8
+Created-By: Maven Integration for Eclipse
+

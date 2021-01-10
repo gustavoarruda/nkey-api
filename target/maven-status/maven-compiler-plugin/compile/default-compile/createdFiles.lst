@@ -1,0 +1,16 @@
+br\com\nkey\api\model\Evento.class
+br\com\nkey\api\model\Usuario$UsuarioBuilder.class
+br\com\nkey\api\resource\EventoResource.class
+br\com\nkey\api\exceptionhandler\NKeyExceptionHandler$Erro.class
+br\com\nkey\api\service\UsuarioService.class
+br\com\nkey\api\resource\UsuarioResource.class
+br\com\nkey\api\model\Usuario.class
+br\com\nkey\api\service\EventoService.class
+br\com\nkey\api\config\SwaggerConfiguration.class
+br\com\nkey\api\repository\EventoRepository.class
+br\com\nkey\api\exceptionhandler\NKeyExceptionHandler.class
+br\com\nkey\api\NkeyApiApplication.class
+br\com\nkey\api\sequence\model\DatabaseSequence.class
+br\com\nkey\api\model\Evento$EventoBuilder.class
+br\com\nkey\api\sequence\generate\GeneratedSequence.class
+br\com\nkey\api\repository\UsuarioRepository.class
