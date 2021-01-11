@@ -15,11 +15,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "usuarios")
+@Data
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -38,5 +38,7 @@ public class Usuario implements Serializable {
     @Size(min = 3, max = 100, message = "O tamanho mínimo é 3 o máximo é 100")
 	@Email(message = "E-mail inválido")    
     private String usuarioEmail;
+    
+    private String usuarioSenha;
 
 }

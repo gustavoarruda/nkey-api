@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,13 +23,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.nkey.api.model.Evento;
 import br.com.nkey.api.repository.EventoRepository;
-import br.com.nkey.api.sequence.generate.GeneratedSequence;
 import br.com.nkey.api.service.EventoService;
+import br.com.nkey.api.service.sequence.generate.GeneratedSequence;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+@CrossOrigin()
 @RestController
 @RequestMapping("/api/v1")
 @Api(tags = "Eventos", description = "Manipulação de Eventos")
@@ -94,6 +96,16 @@ public class EventoResource {
 	public ResponseEntity<Evento> remover(@Valid @PathVariable Long id) {
 		Optional<Evento> usuario = eventoRepository.findById(id);
 		return usuario.isPresent() ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+	}
+	
+	@ApiOperation("Remove todos os eventos")
+	@ApiResponses({
+		@ApiResponse(code = 204, message = "Todos os eventos deletados com sucesso"),
+	})
+	@DeleteMapping("/eventos/remover/todos")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void remover() {
+		eventoRepository.deleteAll();		
 	}
 
 }

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,13 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.nkey.api.model.Usuario;
 import br.com.nkey.api.repository.UsuarioRepository;
-import br.com.nkey.api.sequence.generate.GeneratedSequence;
 import br.com.nkey.api.service.UsuarioService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+@CrossOrigin()
 @RestController
 @RequestMapping("/api/v1")
 @Api(tags = "Usuários", description = "Manipulação de Usuários")
@@ -41,9 +42,6 @@ public class UsuarioResource {
 	@Autowired
 	private UsuarioService usuarioService;
 
-    @Autowired
-    private GeneratedSequence sequenceGeneratorService;
-	
 	@ApiOperation("Lista todos os usuários.")
     @GetMapping("/usuarios")
     public List<Usuario> listar() {
@@ -68,8 +66,7 @@ public class UsuarioResource {
     @PostMapping("/usuarios")
 	@ResponseStatus(HttpStatus.CREATED)
     public Usuario criar(@Valid @RequestBody Usuario usuario) {
-    	usuario.setUsuarioId(sequenceGeneratorService.generateSequence(Usuario.SEQUENCE_NAME));
-        return usuarioRepository.save(usuario);
+        return usuarioService.criar(usuario);
     }
     
 	@ApiOperation("Atualiza um usuário.")
@@ -89,8 +86,19 @@ public class UsuarioResource {
 		@ApiResponse(code = 404, message = "Usuário não encontrado"),
 	})
 	@DeleteMapping("/usuarios/{id}")
-	public ResponseEntity<Usuario> remover(@Valid @PathVariable Long id) {
-		Optional<Usuario> usuario = usuarioRepository.findById(id);
-		return usuario.isPresent() ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void remover(@Valid @PathVariable Long id) {
+		usuarioService.remover(id);		
+	}
+	
+	@ApiOperation("Remove todos os usuários")
+	@ApiResponses({
+		@ApiResponse(code = 204, message = "Todos os usuários deletados com sucesso"),
+	})
+	@DeleteMapping("/usuarios/remover/todos")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void removerTodos() {
+		usuarioRepository.deleteAll();		
 	}
 }
+	

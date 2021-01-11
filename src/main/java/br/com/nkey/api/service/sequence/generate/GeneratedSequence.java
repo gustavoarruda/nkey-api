@@ -1,4 +1,4 @@
-package br.com.nkey.api.sequence.generate;
+package br.com.nkey.api.service.sequence.generate;
 
 import static org.springframework.data.mongodb.core.FindAndModifyOptions.options;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
