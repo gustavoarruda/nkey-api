@@ -38,7 +38,6 @@ public class JwtAuthenticationResource {
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody Usuario authenticationRequest) throws Exception {
 
 		authenticate(authenticationRequest.getUsuarioEmail(), authenticationRequest.getUsuarioSenha());
-
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsuarioEmail());
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
