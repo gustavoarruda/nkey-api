@@ -9,7 +9,7 @@ Foi utilizado o 'openjdk:8-jdk' para o desenvolvimento deste teste.
 
 ### Frameworks
 
-Foi utilizado como base do projeto o Spring Boot 2.2.6. Algumas bibliotecas adicionais, da própria suite do spring:
+Foi utilizado como base do projeto o Spring Boot 2.4.1. Algumas bibliotecas adicionais, da própria suite do spring:
 
 * ** spring-boot-starter-web - Core do Spring Boot para API's
 * ** spring-boot-devtools - Utilitários do Spring Boot para desenvolvedores
