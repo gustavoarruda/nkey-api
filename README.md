@@ -50,9 +50,9 @@ Foi configurado também para este projeto, um Dockerfile simples, que consiste e
 
 # Instruções docker:
 
-> docker build nkey-api:latest --tag nkey-api:0.0.1-SNAPSHOT .
-> docker run -d -p 8080:8080 nkey-api
-> docker push nkey-api:latest
+> docker build nkey-api:latest --tag nkey-api:0.0.1-SNAPSHOT . <br/>
+> docker run -d -p 8080:8080 nkey-api <br/>
+> docker push nkey-api:latest <br/>
 
 * Para baixar no repositorio:
 
