@@ -18,7 +18,7 @@ Foi utilizado como base do projeto o Spring Boot 2.4.1. Algumas bibliotecas adic
 * ** jjwt - Framework para criar tokens e transmitir informações de maneira mais segura.
 * ** javafaker - Biblioteca utilitária para geração de dados aleatórios para testes.
 * ** springfox-swagger2 - É uma ferramenta open source desenvolvida para integrar projetos Spring Boot com a especificação Swagger afim de documentar a API.
-* ** hibernate-validator - Biblioteca adicional do Hibernate para adicionar os validadores JPA do Hibernate
+* ** hibernate-validator - Biblioteca adicional do Hibernate para adicionar os validadores do Hibernate
 * ** lombok - Biblioteca utilitária para geração automática de getter's, setter's, builder's, entre outros.
 * ** org.apache.commons (commons-lang3) - Biblioteca da Apache, com diversas classes utilitárias
 
