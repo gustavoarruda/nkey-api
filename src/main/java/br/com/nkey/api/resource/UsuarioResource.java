@@ -88,7 +88,7 @@ public class UsuarioResource {
 	@DeleteMapping("/usuarios/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@Valid @PathVariable Long id) {
-		usuarioService.remover(id);		
+		usuarioService.removerPorId(id);		
 	}
 	
 	@ApiOperation("Remove todos os usuários")

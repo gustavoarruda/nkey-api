@@ -67,6 +67,7 @@ public class EventoTests {
 		usuario.setUsuarioEmail(email);
 		usuario.setUsuarioSenha(password);
 		
+		
 		String jsonToken = mvc.perform(
 				post("/api/v1/authenticate")
 				.content(mapper.writeValueAsBytes(usuario))
@@ -76,7 +77,7 @@ public class EventoTests {
 				.getContentAsString();
 
 		token = mapper.readValue(jsonToken, JwtResponse.class).getToken();		
-		
+
 	}
 	
 	@Test
@@ -93,7 +94,6 @@ public class EventoTests {
 					.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
 					.andExpect(jsonPath("$.eventoNome", is(evento.getEventoNome())))					
 					.andExpect(jsonPath("$.eventoData",is(evento.getEventoData())));
-
 	}
 	
 	@Test
@@ -174,7 +174,7 @@ public class EventoTests {
 
 	}
 
-	public void removerUsuarios() {		
+	public void removerUsuarios() {
 		usuarioService.removerTodos();
 	}
 

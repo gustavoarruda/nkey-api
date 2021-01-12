@@ -40,10 +40,9 @@ public class UsuarioService {
     	return usuario;
 	}
 	
-	
-	public void remover( Long usuarioId ) {
-		// TODO: imp remover
-		// TODO: esconder a senha
+	public void removerPorId( Long usuarioId ) {
+		Usuario usuarioEncontrado = buscarUsuarioPeloId(usuarioId);
+		usuarioRepository.deleteById(usuarioEncontrado.getUsuarioId());
 	}
 	
 	public void removerTodos() {
